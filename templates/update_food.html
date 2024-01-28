@@ -1,0 +1,16 @@
+<h2>Update Food</h2>
+<form method="post" action="{{ url_for('update_food', id=food.id) }}">
+    <label for="brand">Brand:</label>
+    <input type="text" name="brand" value="{{ food.brand }}" required>
+    <label for="stock">Stock:</label>
+    <input type="text" name="stock" value="{{ food.stock }}" required>
+    <label for="due_date">Due Date:</label>
+    <input type="date" name="due_date" value="{{ food.due_date.strftime('%Y-%m-%d') }}" required>
+    <label for="animal_id">Animal:</label>
+    <select name="animal_id" required>
+        {% for animal in animals %}
+            <option value="{{ animal.id }}" {% if animal.id == food.animal_id %}selected{% endif %}>{{ animal.animal }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Update Food</button>
+</form>

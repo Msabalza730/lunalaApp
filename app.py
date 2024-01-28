@@ -38,15 +38,37 @@ def medicines():
         return render_template('index.html')
 
 
+@app.route('/update_medicine/<int:id>', methods=['GET', 'POST'])
+def update_medicine(id):
+    medicine = MedicineStocks.query.get(id)
+
+    if request.method == 'POST':
+        medicine.name = request.form['name']
+        medicine.stock = request.form['stock']
+        medicine.due_date = datetime.strptime(request.form['due_date'], '%Y-%m-%d')
+
+        db.session.commit()
+
+        return redirect(url_for('all_medicines'))
+
+    return render_template('update_medicine.html', medicine=medicine)
+
+
 @app.route('/delete_medicine/<int:id>')
 def delete_medicine(id):
     medicine_to_delete = MedicineStocks.query.get(id)
     db.session.delete(medicine_to_delete)
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('all_medicines'))
 
 
-# CRUD Animals
+@app.route('/all_medicines')
+def all_medicines():
+    medicines = MedicineStocks.query.all()
+    return render_template('all_medicines.html', medicines=medicines)
+
+
+# ---------------------------- CRUD Animals ----------------------------------
 @app.route('/animals', methods=['GET', 'POST'])
 def animals():
     if request.method == 'POST':
@@ -60,6 +82,19 @@ def animals():
         animals = Animal.query.all()
         return render_template('index.html', animals=animals)
 
+
+@app.route('/update_animal/<int:id>', methods=['GET', 'POST'])
+def update_animal(id):
+    animal = Animal.query.get(id)
+    if request.method == 'POST':
+        animal.animal = request.form['animal']
+        animal.breed = request.form['breed']
+
+        db.session.commit()
+
+        return redirect(url_for('index'))
+
+    return render_template('update_animal.html', animal=animals)
 
 @app.route('/delete_animal/<int:id>')
 def delete_animal(id):
@@ -85,6 +120,25 @@ def foods():
         foods = FoodStocks.query.all()
         animals = Animal.query.all()
         return render_template('index.html', foods=foods, animals=animals)
+    
+
+@app.route('/update_food/<int:id>', methods=['GET', 'POST'])
+def update_food(id):
+    food = FoodStocks.query.get(id)
+
+    if request.method == 'POST':
+        food.brand = request.form['brand']
+        food.stock = request.form['stock']
+        food.due_date = datetime.strptime(request.form['due_date'], '%Y-%m-%d')
+        food.animal_id = request.form['animal_id']
+
+        db.session.commit()
+
+        return redirect(url_for('index'))
+
+    animals = Animal.query.all()
+    return render_template('update_food.html', food=food, animals=animals)
+
 
 @app.route('/delete_food/<int:id>')
 def delete_food(id):
