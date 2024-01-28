@@ -94,7 +94,7 @@ def update_animal(id):
 
         return redirect(url_for('all_animals'))
 
-    return render_template('update_animal.html', animal=animals)
+    return render_template('update_animal.html', animal=animal)
 
 @app.route('/delete_animal/<int:id>')
 def delete_animal(id):
@@ -107,7 +107,7 @@ def delete_animal(id):
 @app.route('/all_animals')
 def all_animals():
     animals = Animal.query.all()
-    return render_template('all_animals.html', animal=animals)
+    return render_template('all_animals.html', animals=animals)
 
 
 # ------------------------------ CRUD Food ---------------------------------------------------
