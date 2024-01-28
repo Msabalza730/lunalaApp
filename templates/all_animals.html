@@ -10,37 +10,30 @@
     <!-- CSS-->
 </head>
 <body>
-
     <h1 class="text-center mt-5 mb-5 text-primary"> ANIMALS</h1>
     <div class="container">
         <div class="card">
             <div class="card-body">
                 <section>
-                    <h2>Animals</h2>
+                    <h2>All Animals</h2>
                     <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <form method="post" action="{{ url_for('update_animal', id=animal.id) }}" onsubmit="showAlert()">
-                                <label for="animal">Animal:</label>
-                                <input type="text" name="animal" value="{{ animal.animal }}" required>
-                                <label for="breed">Breed:</label>
-                                <input type="text" name="breed" value="{{ animal.breed }}" required>
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <button type="submit" class="btn btn-primary mb-3 mt-4">Save</button>
+                        {% for animal in animals %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    {{ animal.animal }} - Breed: {{ animal.breed }} 
                                 </div>
-                            </form>
-                        </li>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="button" class="btn btn-outline-danger btn-sm"><a href="/delete_animal/{{ animal.id }}">Delete</a></button>
+                                    <button type="button" class="btn btn-outline-success btn-sm"><a href="/update_animal/{{ animal.id }}">Update</a></button>
+                                </div>
+                            </li>
+                        {% endfor %}
                     </ul>
-                    <a href="{{ url_for('all_medicines') }}" class="btn btn-primary mb-3 mt-4">Back to All Animals</a>
+                    <a href="{{ url_for('index') }}" class="btn btn-primary mb-3 mt-4">Back to Index</a>
                 </section>
-                <script>
-                    function showAlert() {
-                        alert('Medicine updated successfully!');
-                    }
-                </script>                
             </div>
         </div>
     </div>
 
 </body>
 </html>
-
