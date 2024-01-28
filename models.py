@@ -1,9 +1,7 @@
-# models.py
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 db = SQLAlchemy()
-
 
 class MedicineStocks(db.Model):
     __tablename__ = 'medicine'
