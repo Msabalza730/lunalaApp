@@ -22,7 +22,7 @@ def index():
     return render_template('index.html', medicines=medicines, animals=animals, foods=food_info)
 
 
-# CRUD Medicines
+#-----------------------------  CRUD Medicines ---------------------------------------------------
 @app.route('/medicines', methods=['GET', 'POST'])
 def medicines():
     if request.method == 'POST':
@@ -68,7 +68,7 @@ def all_medicines():
     return render_template('all_medicines.html', medicines=medicines)
 
 
-# ---------------------------- CRUD Animals ----------------------------------
+# ---------------------------- CRUD Animals ---------------------------------------------------
 @app.route('/animals', methods=['GET', 'POST'])
 def animals():
     if request.method == 'POST':
@@ -92,7 +92,7 @@ def update_animal(id):
 
         db.session.commit()
 
-        return redirect(url_for('index'))
+        return redirect(url_for('all_animals'))
 
     return render_template('update_animal.html', animal=animals)
 
@@ -101,10 +101,16 @@ def delete_animal(id):
     animal_to_delete = Animal.query.get(id)
     db.session.delete(animal_to_delete)
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('all_animals'))
 
 
-# CRUD Food
+@app.route('/all_animals')
+def all_animals():
+    animals = Animal.query.all()
+    return render_template('all_animals.html', animal=animals)
+
+
+# ------------------------------ CRUD Food ---------------------------------------------------
 @app.route('/foods', methods=['GET', 'POST'])
 def foods():
     if request.method == 'POST':
@@ -134,7 +140,7 @@ def update_food(id):
 
         db.session.commit()
 
-        return redirect(url_for('index'))
+        return redirect(url_for('all_food'))
 
     animals = Animal.query.all()
     return render_template('update_food.html', food=food, animals=animals)
@@ -145,7 +151,14 @@ def delete_food(id):
     food_to_delete = FoodStocks.query.get(id)
     db.session.delete(food_to_delete)
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('all_food'))
+
+
+@app.route('/all_food')
+def all_food():
+    food = FoodStocks.query.all()
+    return render_template('all_food.html', food=food, )
+
 
 
 if __name__ == "__main__":
