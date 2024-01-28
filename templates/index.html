@@ -2,12 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LunalaApp</title>
+    <!-- CSS-->
 </head>
 <body>
+<h1> LunalaApp Stocks Management</h1>
+<!-- MedicineStocks CRUD -->
+<section>
+    <h2>Medicine Stocks</h2>
+    <form method="post" action="/medicines">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required>
+        <label for="stock">Stock:</label>
+        <input type="text" name="stock" required>
+        <label for="due_date">Due Date:</label>
+        <input type="date" name="due_date" required>
+        <button type="submit">Add Medicine</button>
+    </form>
 
-    <h1>LunalaAPP</h1>
+    <ul>
+        {% for medicine in medicines %}
+            <li>
+                {{ medicine.name }} - Stock: {{ medicine.stock }} - Due Date: {{ medicine.due_date.strftime('%Y-%m-%d') }}
+                <a href="/delete_medicine/{{ medicine.id }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
+<!-- Animal CRUD -->
+<section>
+    <h2>Animals</h2>
+    <form method="post" action="/animals">
+        <label for="animal">Animal:</label>
+        <input type="text" name="animal" required>
+        <label for="breed">Breed:</label>
+        <input type="text" name="breed" required>
+        <button type="submit">Add Animal</button>
+    </form>
 
+    <ul>
+        {% for animal in animals %}
+            <li>
+                {{ animal.animal }} - Breed: {{ animal.breed }} 
+                <a href="/delete_animal/{{ animal.id }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
+<!-- FoodStocks CRUD -->
+<section>
+    <h2>Food Stocks</h2>
+    <form method="post" action="/foods">
+        <label for="brand">Brand:</label>
+        <input type="text" name="brand" required>
+        <label for="stock">Stock:</label>
+        <input type="text" name="stock" required>
+        <label for="due_date">Due Date:</label>
+        <input type="date" name="due_date" required>
+        <label for="animal_id">Animal:</label>
+        <label for="animal_id">Animal:</label>
+        <label for="animal_id">Animal:</label>
+        <select name="animal_id" required>
+            {% for animal in animals %}
+                <option value="{{ animal.id }}">{{ animal.animal }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Add Food</button>
+    </form>
+
+    <ul>
+        {% for food_info in foods %}
+            <li>
+                {{ food_info.food.brand }} - Stock: {{ food_info.food.stock }} - Due Date: {{ food_info.food.due_date.strftime('%Y-%m-%d') }} - Animal: {{ food_info.animal_name }}
+                <a href="/delete_food/{{ food_info.food.id }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
 </body>
 </html>
+

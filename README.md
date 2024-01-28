@@ -12,4 +12,4 @@ Python Flask app to know products in stock from the vet
     - pip install -r requirements.txt
 
 3. Run app
-    - py app.py
+    - python app.py
