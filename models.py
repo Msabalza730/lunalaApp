@@ -20,7 +20,7 @@ class MedicineStocks(db.Model):
 class Animal(db.Model):
     __tablename__ = 'animal'
     id = db.Column(db.Integer, primary_key=True)
-    animal = db.Column(db.String(200))
+    animal = db.Column(db.String(200), unique=True)
     breed = db.Column(db.String(200))
 
     def __init__(self, animal, breed):

@@ -1,12 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flasgger import Swagger
 from models import db, MedicineStocks, Animal, FoodStocks
 from datetime import datetime
 
 app = Flask(__name__)
 app.config.from_object('config.Config')
-db.init_app(app)
+#db.init_app(app)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 swagger = Swagger(app, template={
     "info": {
