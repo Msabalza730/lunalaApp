@@ -11,7 +11,7 @@ db.init_app(app)
 swagger = Swagger(app, template={
     "info": {
         "title": "LunalaApp Stocks Management",
-        "description": "Your API Description",
+        "description": "API for stock management in an animal foundation",
         "termsOfService": "Your Terms of Service",
         "version": "0.0.1",
         "contact": {
