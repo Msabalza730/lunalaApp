@@ -1,0 +1,23 @@
+body {
+    background-image: url('/static/lunala.jpeg'); 
+    background-repeat:  repeat;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.753); 
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 4em; 
+    background-color: aliceblue;
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.801); 
+}
