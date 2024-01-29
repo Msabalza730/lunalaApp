@@ -11,7 +11,7 @@ class TestApp(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_medicines_get(self):
-        response = requests.get(f'{self.base_url}/medicines')
+        response = requests.get(f'{self.base_url}/all_medicines')
         self.assertEqual(response.status_code, 200)
 
     def test_medicines_post(self):
@@ -20,22 +20,22 @@ class TestApp(unittest.TestCase):
             'stock': 10,
             'due_date': '2024-01-31'
         }
-        response = requests.post(f'{self.base_url}/medicines', data=data)
+        response = requests.post(f'{self.base_url}/update_medicines', data=data)
         self.assertEqual(response.status_code, 302) 
 
     def test_animals_get(self):
-        response = requests.get(f'{self.base_url}/animals')
+        response = requests.get(f'{self.base_url}/all_animals')
         self.assertEqual(response.status_code, 200)
 
     def test_animals_post(self):
         data = {
             'name': 'Test Animal'
         }
-        response = requests.post(f'{self.base_url}/animals', data=data)
+        response = requests.post(f'{self.base_url}/update_animals', data=data)
         self.assertEqual(response.status_code, 302) 
 
     def test_foods_get(self):
-        response = requests.get(f'{self.base_url}/foods')
+        response = requests.get(f'{self.base_url}/all_foods')
         self.assertEqual(response.status_code, 200)
 
     def test_foods_post(self):
@@ -45,7 +45,7 @@ class TestApp(unittest.TestCase):
             'due_date': '2024-01-31',
             'animal_id': 1 
         }
-        response = requests.post(f'{self.base_url}/foods', data=data)
+        response = requests.post(f'{self.base_url}/update_foods', data=data)
         self.assertEqual(response.status_code, 302)
 
 
