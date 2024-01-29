@@ -15,22 +15,23 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <section>All Food</h2>
-                    <ul class="list-group">
-                        {% for food_info in foods %}
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>
-                                    {{ food_info.brand }} - Stock: {{ food_info.stock }} - Due Date: {{ food_info.due_date.strftime('%Y-%m-%d') }} - Animal: {{ food_info.animal_name }}
-                                </div>
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <button type="button" class="btn btn-outline-danger btn-sm"><a href="/delete_food/{{ food_info.id }}">Delete</a></button>
-                                    <button type="button" class="btn btn-outline-success btn-sm"><a href="/update_food/{{ food_info.id }}">Update</a></button>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                    <a href="{{ url_for('index') }}" class="btn btn-primary mb-3 mt-4">Back to Index</a>
-                </section>
+                <section>
+                    <h2>All Food</h2>
+                        <ul class="list-group">
+                            {% for food_info in foods %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        {{ food_info.brand }} - Stock: {{ food_info.stock }} - Due Date: {{ food_info.due_date.strftime('%Y-%m-%d') }} - Animal: {{ food_info.animal_name }}
+                                    </div>
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <button type="button" class="btn btn-outline-danger btn-sm"><a href="/delete_food/{{ food_info.id }}">Delete</a></button>
+                                        <button type="button" class="btn btn-outline-success btn-sm"><a href="/update_food/{{ food_info.id }}">Update</a></button>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <a href="{{ url_for('index') }}" class="btn btn-primary mb-3 mt-4">Back to Index</a>
+                    </section>
             </div>
         </div>
     </div>
