@@ -18,7 +18,7 @@
             <div class="card-body">
                 <section>
                     <h2>Medicine Stocks</h2>
-                    <form method="post" action="/medicines">
+                    <form method="post" action="/medicines"  onsubmit="showAlert()">
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="name">Name:</label>
@@ -54,7 +54,7 @@
             <div class="card-body">
                 <section>
                     <h2>Animals</h2>
-                    <form method="post" action="/animals">
+                    <form method="post" action="/animals"  onsubmit="showAlert()">
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="animal">Animal:</label>
@@ -79,37 +79,51 @@
             </div>
         </div>
     </div>
+    
     <!-- FoodStocks CRUD -->
-    <section>
-        <h2>Food Stocks</h2>
-        <form method="post" action="/foods">
-            <label for="brand">Brand:</label>
-            <input type="text" name="brand" required>
-            <label for="stock">Stock:</label>
-            <input type="text" name="stock" required>
-            <label for="due_date">Due Date:</label>
-            <input type="date" name="due_date" required>
-            <label for="animal_id">Animal:</label>
-            <label for="animal_id">Animal:</label>
-            <label for="animal_id">Animal:</label>
-            <select name="animal_id" required>
-                {% for animal in animals %}
-                    <option value="{{ animal.id }}">{{ animal.animal }}</option>
-                {% endfor %}
-            </select>
-            <button type="submit">Add Food</button>
-        </form>
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <section>
+                        <h2>Food Stocks</h2>
+                        <form method="post" action="/foods" onsubmit="showAlert()">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="brand">Brand:</label>
+                                    <input type="text" class="form-control mb-3" name="brand" required>
+                                </div>
+                                <div class="col">
+                                    <label for="stock">Stock:</label>
+                                    <input type="text" class="form-control mb-3" name="stock" required>
+                                </div>
+                                <div class="col">
+                                    <label for="due_date">Due Date:</label>
+                                    <input type="date" class="form-control mb-3" name="due_date" required>
+                                </div>
+                                <div class="col">
+                                    <label for="animal_id">Animal:</label>
+                                    <select name="animal_id" required>
+                                        {% for animal in animals %}
+                                            <option value="{{ animal.id }}">{{ animal.animal }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary mb-3 mt-4">Add Food</button>
+                                    <a href="{{ url_for('all_food') }}" class="btn btn-secondary mb-3 mt-4">View All</a>
+                                </div>
+                            </div>    
+                        </form>
+                    </section>
+                    <script>
+                        function showAlert() {
+                            alert('Food added successfully!');
+                        }
+                    </script>  
+                </div>
+            </div>
+        </div>
 
-        <ul>
-            {% for food_info in foods %}
-                <li>
-                    {{ food_info.food.brand }} - Stock: {{ food_info.food.stock }} - Due Date: {{ food_info.food.due_date.strftime('%Y-%m-%d') }} - Animal: {{ food_info.animal_name }}
-                    <a href="/delete_food/{{ food_info.food.id }}">Delete</a>
-                    <a href="/update_food/{{ food_info.food.id }}">Update</a>
-                </li>
-            {% endfor %}
-        </ul>
-    </section>
 </body>
 </html>
 

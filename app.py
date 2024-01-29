@@ -156,8 +156,8 @@ def delete_food(id):
 
 @app.route('/all_food')
 def all_food():
-    food = FoodStocks.query.all()
-    return render_template('all_food.html', food=food, )
+    foods = FoodStocks.query.all()
+    return render_template('all_food.html', foods=foods)
 
 
 
