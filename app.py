@@ -7,7 +7,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 app.config.from_object('config.Config')
-#db.init_app(app)
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
