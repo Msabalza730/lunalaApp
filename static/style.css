@@ -1,6 +1,8 @@
 body {
-    background-image: url('/static/lunala.jpeg'); 
-    background-repeat:  repeat;
+    background-image: url('https://img.freepik.com/premium-photo/large-group-cats-dogs-looking-camera-blue-background_191971-28558.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     overflow: hidden;
 }
 
