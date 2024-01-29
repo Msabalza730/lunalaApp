@@ -11,8 +11,15 @@ Python Flask app to know products in stock from the vet
 2.  Install the requirements
     - pip install -r requirements.txt
 
-3. Run app
+3. Run migrations
+    - flask db init
+    - flask db upgrade
+
+4. Run app
     - python app.py
 
-4. View Documentation
+5. View Documentation
     - http://127.0.0.1:5000/apidocs/ 
+
+
+
